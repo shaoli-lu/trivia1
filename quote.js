@@ -23,6 +23,20 @@ function capitalize(str){
     return str[0].toUpperCase()+str.slice(1)
 }
 
+function randomizeAnswers(correctAnswer, incorrectAnswers) {
+    let allAnswers = [correctAnswer, ...incorrectAnswers];
+    let randomizedAnswers = [];
+    
+    while(allAnswers.length > 0) {
+      let randomIndex = Math.floor(Math.random() * allAnswers.length);
+      randomizedAnswers.push(allAnswers[randomIndex]);
+      allAnswers.splice(randomIndex, 1);
+    }
+    
+    return randomizedAnswers;
+  }
+
+  
 function getQuote() {
     fetch("https://opentdb.com/api.php?amount=1").then(response => response.json()).then(data => {
     
@@ -51,17 +65,27 @@ function getQuote() {
         
         correctAnswer = data.results[0].correct_answer;
 
-        // Assign answers to elements
-        document.querySelector('#correct_answer').innerHTML = data.results[0].correct_answer;
+        // // Assign answers to elements
+        // document.querySelector('#correct_answer').innerHTML = data.results[0].correct_answer;
         
-        document.querySelector('#ia1').innerHTML = data.results[0].incorrect_answers[0];
-        if (data.results[0].incorrect_answers[1] !== undefined)  
-        document.querySelector('#ia2').innerHTML = data.results[0].incorrect_answers[1];
-        else document.querySelector('#ia2').innerHTML ='';
+        // document.querySelector('#ia1').innerHTML = data.results[0].incorrect_answers[0];
+        // document.querySelector('#ia2').innerHTML ='';
+        // if (data.results[0].incorrect_answers[1] !== undefined)  
+        // document.querySelector('#ia2').innerHTML = data.results[0].incorrect_answers[1];
+       
+        // document.querySelector('#ia3').innerHTML = ''; 
+        // if (data.results[0].incorrect_answers[2] !== undefined) 
+        // document.querySelector('#ia3').innerHTML = data.results[0].incorrect_answers[2];
+        let randomizedAnswers = randomizeAnswers(data.results[0].correct_answer, data.results[0].incorrect_answers);
 
-        if (data.results[0].incorrect_answers[2] !== undefined) 
-        document.querySelector('#ia3').innerHTML = data.results[0].incorrect_answers[2];
-        else document.querySelector('#ia3').innerHTML = '';     
+        document.querySelector('#correct_answer').innerHTML = randomizedAnswers[0];
+        document.querySelector('#ia1').innerHTML = randomizedAnswers[1];
+        document.querySelector('#ia2').innerHTML ='';
+        if (randomizedAnswers[2] !== undefined)
+        document.querySelector('#ia2').innerHTML = randomizedAnswers[2];
+        document.querySelector('#ia3').innerHTML = ''; 
+        if (randomizedAnswers[3] !== undefined)
+        document.querySelector('#ia3').innerHTML = randomizedAnswers[3];    
             
     })  
 }
