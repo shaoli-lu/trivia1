@@ -7,10 +7,10 @@ document.querySelector('#ia3').addEventListener('click', checkAnswer);
 
 let correctAnswer;
 function checkAnswer() {
-    if (this.innerHTML === correctAnswer) {
-        alert('Correct!');
+    if (this.innerHTML.substring(5) === correctAnswer) {
+        alert('Correct! - Answer: ' + this.innerHTML.substring(5));
     } else {
-        alert('Incorrect!');
+        alert('Incorrect! - Answer: ' + this.innerHTML.substring(5));
     }
 }
 
@@ -78,14 +78,14 @@ function getQuote() {
         // document.querySelector('#ia3').innerHTML = data.results[0].incorrect_answers[2];
         let randomizedAnswers = randomizeAnswers(data.results[0].correct_answer, data.results[0].incorrect_answers);
 
-        document.querySelector('#correct_answer').innerHTML = randomizedAnswers[0];
-        document.querySelector('#ia1').innerHTML = randomizedAnswers[1];
+        document.querySelector('#correct_answer').innerHTML = "(1.) " + randomizedAnswers[0];
+        document.querySelector('#ia1').innerHTML = "(2.) " + randomizedAnswers[1];
         document.querySelector('#ia2').innerHTML ='';
         if (randomizedAnswers[2] !== undefined)
-        document.querySelector('#ia2').innerHTML = randomizedAnswers[2];
+        document.querySelector('#ia2').innerHTML = "(3.) " + randomizedAnswers[2];
         document.querySelector('#ia3').innerHTML = ''; 
         if (randomizedAnswers[3] !== undefined)
-        document.querySelector('#ia3').innerHTML = randomizedAnswers[3];    
+        document.querySelector('#ia3').innerHTML = "(4.) " + randomizedAnswers[3];    
             
     })  
 }
