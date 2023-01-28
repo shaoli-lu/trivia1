@@ -57,8 +57,11 @@ function getQuote() {
         document.querySelector('#ia1').innerHTML = data.results[0].incorrect_answers[0];
         if (data.results[0].incorrect_answers[1] !== undefined)  
         document.querySelector('#ia2').innerHTML = data.results[0].incorrect_answers[1];
+        else document.querySelector('#ia2').innerHTML ='';
+
         if (data.results[0].incorrect_answers[2] !== undefined) 
-        document.querySelector('#ia3').innerHTML = data.results[0].incorrect_answers[2];     
+        document.querySelector('#ia3').innerHTML = data.results[0].incorrect_answers[2];
+        else document.querySelector('#ia3').innerHTML = '';     
             
     })  
 }
