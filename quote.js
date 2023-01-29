@@ -42,7 +42,7 @@ function getQuote() {
     
    
         document.querySelector('#question').innerHTML = '"' + data.results[0].question  + '"' ;  
-        document.querySelector('#category').innerHTML = "(" +  data.results[0].category + ")";  
+        document.querySelector('#category').innerHTML = "Category - " +  data.results[0].category;  
        /*  if (data.results[0].type=="boolean") {
             document.querySelector('#type').innerHTML = "Type: " +  "True/False";  
         } else if (data.results[0].type=="multiple") {
