@@ -42,13 +42,13 @@ function getQuote() {
     
    
         document.querySelector('#question').innerHTML = '"' + data.results[0].question  + '"' ;  
-        document.querySelector('#category').innerHTML = "Category: " +  data.results[0].category;  
-        if (data.results[0].type=="boolean") {
+        document.querySelector('#category').innerHTML = "(" +  data.results[0].category + ")";  
+       /*  if (data.results[0].type=="boolean") {
             document.querySelector('#type').innerHTML = "Type: " +  "True/False";  
         } else if (data.results[0].type=="multiple") {
             document.querySelector('#type').innerHTML = "Type: " +  "Multiple Choice";  
         } else
-        {document.querySelector('#type').innerHTML = "Type: " +  data.results[0].type; } 
+        {document.querySelector('#type').innerHTML = "Type: " +  data.results[0].type; }  */
 
         document.querySelector('#difficulty').innerHTML = "Difficulty: " +  capitalize(data.results[0].difficulty);  
         // document.querySelector('#correct_answer').innerHTML = "Answer: " + data.results[0].correct_answer;  
