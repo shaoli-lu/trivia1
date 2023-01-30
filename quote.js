@@ -7,7 +7,12 @@ document.querySelector('#ia3').addEventListener('click', checkAnswer);
 
 let correctAnswer;
 function checkAnswer() {
-    if (this.innerHTML.substring(5) === correctAnswer) {
+    // const decoder = new TextDecoder();
+    // const decodedStringcorrectAnswer = decoder.decode(new Uint8Array(correctAnswer.split('').map(c => c.charCodeAt(0))));
+    let decoded = document.createElement("div");
+    decoded.innerHTML = correctAnswer;
+
+    if (this.innerHTML.substring(5) ===  decoded.innerText) {
         alert('Correct! - Answer: ' + this.innerHTML.substring(5));
     } else {
         alert('Incorrect! - Answer: ' + this.innerHTML.substring(5));
@@ -40,7 +45,7 @@ function randomizeAnswers(correctAnswer, incorrectAnswers) {
 function getQuote() {
     fetch("https://opentdb.com/api.php?amount=1").then(response => response.json()).then(data => {
     
-   
+    // let data = JSON.parse(decodeURIComponent(JSON.stringify(text)));
         document.querySelector('#question').innerHTML = '"' + data.results[0].question  + '"' ;  
         document.querySelector('#category').innerHTML = "Category - " +  data.results[0].category;  
        /*  if (data.results[0].type=="boolean") {
@@ -63,7 +68,7 @@ function getQuote() {
         document.querySelector('#ia0').innerHTML = "Answers(Click to check):";
         // Assign correct answer to variable
         
-        correctAnswer = data.results[0].correct_answer;
+        correctAnswer = decodeURIComponent(data.results[0].correct_answer);
 
         // // Assign answers to elements
         // document.querySelector('#correct_answer').innerHTML = data.results[0].correct_answer;
